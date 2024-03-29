@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SujetAnnee {
+  id_sujet       String         @id
+  titre          String
+  date           DateTime?
+  image          String[]
+  description    String?
+  autres         String?
+  daysthirty     DaysThirty[]      @relation("daysthirty_sujetannee")
+}
+
+model Utilisateur {
+  id_utilisateur String         @id
+  nom            String
+  prenom         String
+  email          String         @unique
+  motDePasse     String
+  photo          String?
+}
+
+model DaysThirty {
+  id_days        String         @id
+  titre          String
+  date           DateTime?
+  days           String?
+  contenu        String?
+  bible          String?
+  references     String?
+  priere         String?
+  autres         String?
+  image          String[]
+  id_sujet       String
+  sujetannee     SujetAnnee     @relation("daysthirty_sujetannee", fields: [id_sujet], references: [id_sujet])
+}
+

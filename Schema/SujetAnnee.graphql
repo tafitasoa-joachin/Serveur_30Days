@@ -1,0 +1,46 @@
+scalar Date
+
+#import "./DaysThirty.graphql"
+
+
+type SujetAnnee {
+  id_sujet:       String       
+  titre :         String
+  image  :        [String]
+  date    :       Date
+  description:    String
+  autres      :   String
+  daysthirty :    [DaysThirty!]!
+}
+
+type Query {
+  findOneSujetAnnee(id_sujet: String!): SujetAnnee
+  findAllSujetAnnee: [SujetAnnee]
+}
+
+type MessageDelete {
+  message: String
+  success: Boolean
+}
+
+type Mutation {
+  supprimerSujetAnnee(id_sujet: String!): MessageDelete!
+
+  ajoutSujetAnnee(
+    id_sujet:       String
+    titre:          String
+    image :         [String]
+    date :          Date
+    description:    String
+    autres  :       String
+  ): SujetAnnee  
+
+  modifieSujetAnnee(
+    id_sujet:       String!
+    titre:          String
+    image :         [String]
+    date :          Date
+    description:    String
+    autres  :       String
+  ): SujetAnnee
+}

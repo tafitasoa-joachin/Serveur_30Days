@@ -1,0 +1,52 @@
+scalar Date
+
+type DaysThirty {
+  id_days: String!
+  titre: String
+  days: String
+  contenu: String
+  bible: String
+  references: String
+  image: [String]
+  date: Date
+}
+
+type Query {
+  findOne30jours(id: String!): DaysThirty
+  findMany30jours: [DaysThirty]
+}
+
+type MessageDelete {
+  message: String
+  success: Boolean
+}
+
+type Mutation {
+  supprimerDaysThirty(id_days: String!): MessageDelete!
+
+  addDaysThirty(
+    titre: String
+    date: Date 
+    days: String
+    contenu: String
+    bible: String
+    references: String
+    priere: String  
+    autres: String  
+    id_sujet: String
+    image: [String] 
+  ): DaysThirty  
+
+  updateDaysThirty(
+    id_days: String!
+    titre: String
+    date: Date 
+    days: String
+    contenu: String
+    bible: String
+    references: String
+    priere: String  
+    autres: String  
+    image: [String] 
+  ): DaysThirty
+}
